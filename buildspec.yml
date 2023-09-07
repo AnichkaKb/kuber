@@ -1,0 +1,11 @@
+phases:
+  install:
+    commands:
+      - curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash  # Встановити NVM (Node Version Manager)
+      - export NVM_DIR="$HOME/.nvm"
+      - [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # Завантажити NVM
+      - nvm install 16  # Встановити Node.js 16.x
+      - npm install -g npm  # Оновити npm до останньої версії
+  build:
+    commands:
+      - make build  # Виконати команду `make build` після встановлення Node.js та npm
