@@ -6,11 +6,12 @@ env:
 phases:
   install:
     commands:
-      - yum install -y ***EXAMPLE_PACKAGES***
+      - yum install -y curl -fsSL https://rpm.nodesource.com/setup_16.x | bash -
+      - yum install -y nodejs
       - wget https://storage.googleapis.com/golang/go1.11.8.linux-amd64.tar.gz
       - tar -C /usr/local -xzf go1.11.8.linux-amd64.tar.gz
       - export PATH="/usr/local/go/bin:$PATH" && export GOPATH="$HOME/go" && export PATH="$GOPATH/bin:$PATH"
-      - go get -v -u ***GO_MODULES***
+      - go get
   pre_build:
     commands:
       - echo Start pre_build...
