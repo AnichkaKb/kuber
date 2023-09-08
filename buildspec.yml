@@ -5,7 +5,7 @@ phases:
     commands:
       - yum install nodejs -y
       - wget https://go.dev/dl/go1.20.5.linux-amd64.tar.gz 
-      - tar -C /usr/local -xzf go1.17.1.linux-amd64.tar.gz  
+      - tar -xzf go1.20.5.linux-amd64.tar.gz   
       - export GOROOT=/usr/local/go 
       - export GOPATH=$HOME/Projects/Proj1 
       - export PATH=$GOPATH/bin:$GOROOT/bin:$PATH 
