@@ -1,11 +1,16 @@
+version: 0.2
+
 phases:
   install:
     commands:
-      - curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash  # Встановити NVM (Node Version Manager)
-      - export NVM_DIR="$HOME/.nvm"
-      - [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # Завантажити NVM
-      - nvm install 16  # Встановити Node.js 16.x
-      - npm install -g npm  # Оновити npm до останньої версії
+      - yum install nodejs -y
+      - wget https://go.dev/dl/go1.20.5.linux-amd64.tar.gz 
+      - tar -xzf go1.20.5.linux-amd64.tar.gz 
+      - mv go /usr/local 
+      - export GOROOT=/usr/local/go 
+      - export GOPATH=$HOME/Projects/Proj1 
+      - export PATH=$GOPATH/bin:$GOROOT/bin:$PATH 
   build:
     commands:
-      - make build  # Виконати команду `make build` після встановлення Node.js та npm
+      - go get ./...
+      - make build 
