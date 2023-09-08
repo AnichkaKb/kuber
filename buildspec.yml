@@ -3,10 +3,14 @@ version: 0.2
 phases:
   install:
     runtime-versions:
-      nodejs: 16
+      nodejs: 12
       go: 1.20
     commands:
-      # Видаліть всі попередні команди, що стосуються встановлення Node.js і Golang.
+      - wget https://golang.org/dl/go1.20.5.linux-amd64.tar.gz
+      - tar -C /usr/local -xzf go1.20.5.linux-amd64.tar.gz
+      - export GOROOT=/usr/local/go
+      - export GOPATH=$HOME/Projects/Proj1
+      - export PATH=$GOPATH/bin:$GOROOT/bin:$PATH
   build:
     commands:
-      - make build 
+      - make build
