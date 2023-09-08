@@ -8,7 +8,7 @@ phases:
   build:
     commands:
       - echo Building the Go code...
-      - go build gitea
+      - go build
       - echo Building the Node code...
 artifacts:
   secondary-artifacts:
