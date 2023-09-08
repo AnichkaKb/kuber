@@ -3,7 +3,9 @@ version: 0.2
 phases:
   install:
     commands:
-      - yum install nodejs -y
+      - curl -fsSL https://deb.nodesource.com/setup_16.x | sudo -E bash -
+      - apt install nodejs -y
+      - apt-get install -y npm
       - wget https://golang.org/dl/go1.17.1.linux-amd64.tar.gz
       - tar -C /usr/local -xzf go1.17.1.linux-amd64.tar.gz  
       - export GOROOT=/usr/local/go 
