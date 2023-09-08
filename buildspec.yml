@@ -20,9 +20,3 @@ phases:
     commands:
       - echo Building the Go code...
       - make build
-      - echo Building the Node code...
-artifacts:
-  secondary-artifacts:
-    golang_artifacts:
-      files:
-        - gitea
