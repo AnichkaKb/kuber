@@ -9,6 +9,10 @@ phases:
       - curl -o node.tar.xz https://nodejs.org/dist/v16.19.0/node-v16.19.0-linux-x64.tar.xz
       - tar -xf node.tar.xz
       - mv node-* /usr/local/node
+      - curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
+      - export NVM_DIR="$HOME/.nvm"
+      - [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # Завантажуємо nvm
+      - nvm install 16.19.0
 
   build:
     commands:
