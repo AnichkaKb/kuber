@@ -11,5 +11,4 @@ phases:
       - export PATH=$GOPATH/bin:$GOROOT/bin:$PATH 
   build:
     commands:
-      - go mod download
       - make build 
