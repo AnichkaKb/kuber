@@ -3,14 +3,16 @@ version: 0.2
 phases:
   install:
     runtime-versions:
-      nodejs: 12
-      golang: 1.20
+      golang: 1.14
     commands:
-      - wget https://golang.org/dl/go1.20.5.linux-amd64.tar.gz
-      - tar -C /usr/local -xzf go1.20.5.linux-amd64.tar.gz
-      - export GOROOT=/usr/local/go
-      - export GOPATH=$HOME/Projects/Proj1
-      - export PATH=$GOPATH/bin:$GOROOT/bin:$PATH
+      - curl -fsSL https://deb.nodesource.com/setup_16.x | sudo -E bash -
+      - apt install nodejs -y
+      - apt-get install -y npm
+      - wget https://golang.org/dl/go1.17.1.linux-amd64.tar.gz
+      - tar -C /usr/local -xzf go1.17.1.linux-amd64.tar.gz  
+      - export GOROOT=/usr/local/go 
+      - export GOPATH=$HOME/Projects/Proj1 
+      - export PATH=$GOPATH/bin:$GOROOT/bin:$PATH 
   build:
     commands:
       - make build
