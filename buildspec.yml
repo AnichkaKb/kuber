@@ -9,7 +9,6 @@ phases:
       - curl -o node.tar.xz https://nodejs.org/dist/v16.19.0/node-v16.19.0-linux-x64.tar.xz
       - tar -xf node.tar.xz
       - mv node-* /usr/local/node
-      - yum install -y nvm
 
   build:
     commands:
