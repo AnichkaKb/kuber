@@ -4,7 +4,6 @@ phases:
   install:
     runtime-versions:
       golang: 1.13
-      nodejs: 12
   build:
     commands:
       - echo Building the Go code...
