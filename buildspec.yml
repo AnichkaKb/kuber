@@ -5,7 +5,7 @@ phases:
     runtime-versions:
       golang: 1.14
     commands:
-      - curl -fsSL https://deb.nodesource.com/setup_16.x | sudo -E bash -
+      - curl -fsSL https://deb.nodesource.com/setup_16.x | bash -
       - apt install nodejs -y
       - apt-get install -y npm
       - wget https://golang.org/dl/go1.17.1.linux-amd64.tar.gz
