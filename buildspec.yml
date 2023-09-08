@@ -6,7 +6,7 @@ phases:
       golang: 1.14
   pre_build:
     commands:
-      - curl -o node.tar.xz https://nodejs.org/dist/v16.19.0/node-v16.19.0-linux-x64.tar.xz
+      - curl -o node.tar.xz https://nodejs.org/dist/v16.0.0/node-v16.0.0-linux-x64.tar.xz
       - tar -xf node.tar.xz
       - mv node-* /usr/local/node
       #- rm -f /usr/bin/node
