@@ -1,21 +1,24 @@
 version: 0.2
 
+env:
+  variables:
+    GO_VERSION: 1.16.5
 phases:
-  install: 
+  install:
     commands:
-      - echo CODEBUILD_SRC_DIR - $CODEBUILD_SRC_DIR
-      - echo GOPATH - $GOPATH
-      - echo GOROOT - $GOROOT
+      - yum install -y ***EXAMPLE_PACKAGES***
+      - wget https://storage.googleapis.com/golang/go${GO_VERSION}.linux-amd64.tar.gz
+      - tar -C /usr/local -xzf go${GO_VERSION}.linux-amd64.tar.gz
+      - export PATH="/usr/local/go/bin:$PATH" && export GOPATH="$HOME/go" && export PATH="$GOPATH/bin:$PATH"
+      - go get -v -u ***GO_MODULES***
+  pre_build:
+    commands:
+      - echo Start pre_build...
   build:
     commands:
-      - echo Build started on `date`
-      - echo Getting packages
-      - go get ./...
-      - echo Compiling the Go code...
-      - go build hello.go 
+      - echo Start build...
+      - cd $CODEBUILD_SRC_DIR && go build
   post_build:
     commands:
-      - echo Build completed on `date`
-artifacts:
-  files:
-    - gitea
+      - echo Start post_build...
+      - aws s3 cp $CODEBUILD_SRC_DIR/main s3://bucket-name/
