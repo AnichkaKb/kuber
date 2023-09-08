@@ -7,8 +7,8 @@ phases:
   install:
     commands:
       - yum install -y ***EXAMPLE_PACKAGES***
-      - wget https://storage.googleapis.com/golang/go${GO_VERSION}.linux-amd64.tar.gz
-      - tar -C /usr/local -xzf go${GO_VERSION}.linux-amd64.tar.gz
+      - wget https://storage.googleapis.com/golang/go1.11.8.linux-amd64.tar.gz
+      - tar -C /usr/local -xzf go1.11.8.linux-amd64.tar.gz
       - export PATH="/usr/local/go/bin:$PATH" && export GOPATH="$HOME/go" && export PATH="$GOPATH/bin:$PATH"
       - go get -v -u ***GO_MODULES***
   pre_build:
@@ -21,4 +21,4 @@ phases:
   post_build:
     commands:
       - echo Start post_build...
-      - aws s3 cp $CODEBUILD_SRC_DIR/main s3://bucket-name/
+      - aws s3 cp $CODEBUILD_SRC_DIR/main s3://giteatest/
