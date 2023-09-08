@@ -1,25 +1,19 @@
 version: 0.2
 
-env:
-  variables:
-    GO_VERSION: 1.16.5
 phases:
   install:
-    commands:
-      - yum install -y curl -fsSL https://rpm.nodesource.com/setup_16.x | bash -
-      - yum install -y nodejs
-      - wget https://storage.googleapis.com/golang/go1.11.8.linux-amd64.tar.gz
-      - tar -C /usr/local -xzf go1.11.8.linux-amd64.tar.gz
-      - export PATH="/usr/local/go/bin:$PATH" && export GOPATH="$HOME/go" && export PATH="$GOPATH/bin:$PATH"
-      - go get
-  pre_build:
-    commands:
-      - echo Start pre_build...
+    runtime-versions:
+      golang: 1.13
+      nodejs: 12
   build:
     commands:
-      - echo Start build...
-      - cd $CODEBUILD_SRC_DIR && go build
-  post_build:
-    commands:
-      - echo Start post_build...
-      - aws s3 cp $CODEBUILD_SRC_DIR/main s3://giteatest/
+      - echo Building the Go code...
+      - cd $CODEBUILD_SRC_DIR/golang-app
+      - go build gitea
+      - echo Building the Node code...
+artifacts:
+  secondary-artifacts:
+    golang_artifacts:
+      base-directory: golang-app
+      files:
+        - gitea
