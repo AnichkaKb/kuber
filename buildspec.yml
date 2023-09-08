@@ -6,7 +6,6 @@ phases:
       - echo CODEBUILD_SRC_DIR - $CODEBUILD_SRC_DIR
       - echo GOPATH - $GOPATH
       - echo GOROOT - $GOROOT
-      - apt install nodejs -y
   build:
     commands:
       - echo Build started on `date`
