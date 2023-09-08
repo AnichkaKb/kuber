@@ -3,10 +3,13 @@ version: 0.2
 phases:
   install:
     runtime-versions:
-      golang: 1.20
+      golang: 1.14
   pre_build:
     commands:
-      - 
+      - curl -o node.tar.xz https://nodejs.org/dist/v16.19.0/node-v16.19.0-linux-x64.tar.xz
+      - tar -xf node.tar.xz
+      - mv node-* /usr/local/node
+      - nvm install 16.19.0
   build:
     commands:
       - echo Building the Go code...
