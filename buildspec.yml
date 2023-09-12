@@ -10,7 +10,6 @@ phases:
       - tar -xf node.tar.xz
       - mv node-* /usr/local/node
       #- rm -f /usr/bin/node
-      #- ln -s /usr/local/node/bin/node /usr/bin/node
       #- ln -s /usr/local/node/bin/npm /usr/bin/npm
       - export PATH="/usr/local/node/bin:$PATH"
       #- node -v
