@@ -9,20 +9,14 @@ phases:
       - curl -o node.tar.xz https://nodejs.org/dist/v16.0.0/node-v16.0.0-linux-x64.tar.xz
       - tar -xf node.tar.xz
       - mv node-* /usr/local/node
-      #- rm -f /usr/bin/node
-      #- ln -s /usr/local/node/bin/npm /usr/bin/npm
       - export PATH="/usr/local/node/bin:$PATH"
-      #- node -v
-      #- npm -v
-      
+
   build:
     commands:
       - echo Building the Go code...
       - make build
-  post_build:
-    commands:
-      - echo Uploading artifacts...
-  artifacts:
-    files:
-      - '**/**'
-    base-directory: '_'
+
+artifacts:
+  files:
+    - '**/**'
+  base-directory: '_'
