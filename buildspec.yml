@@ -19,6 +19,9 @@ phases:
     commands:
       - echo Building the Go code...
       - make build
+  post_build:
+    commands:
+      - echo Uploading artifacts...
   artifacts:
     files:
       - '**/**'
