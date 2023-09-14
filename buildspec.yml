@@ -10,9 +10,12 @@ phases:
       - tar -xf node.tar.xz
       - mv node-* /usr/local/node
       - export PATH="/usr/local/node/bin:$PATH"
-
   build:
     commands:
       - echo Building the Go code...
       - make build
 
+artifacts:
+  files:
+    - '**/**'
+  base-directory: './'
