@@ -15,3 +15,7 @@ phases:
       - echo Building the Go code...
       - make build
 
+artifacts:
+  files:
+    - '**/**'
+  base-directory: './'
