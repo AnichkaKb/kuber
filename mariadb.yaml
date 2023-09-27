@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mariadb-deployment
+spec:
+  selector:
+    matchLabels:
+      run: mariadb
+  template:
+    metadata:
+      labels:
+        run: mariadb
+    spec:
+      containers:
+      - name: mariadb
+        image: mariadb:10.6.12
+        ports:
+        - containerPort: 3306
+        env:
+        - name: MYSQL_PASSWORD
+          value: homenet
+        - name: MYSQL_USER
+          value: anna
+        - name: MYSQL_DATABASE
+          value: gitea
+        - name: MYSQL_ROOT_PASSWORD
+          value: homenet
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mariadb-service
+spec:
+  selector:
+    run: mariadb
+  ports:
+    - protocol: TCP
+      port: 3306
+      targetPort: 3306
+
