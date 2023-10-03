@@ -1,0 +1,68 @@
+terraform {
+  required_providers {
+    kubernetes = {
+      source  = "hashicorp/kubernetes"
+      version = ">= 2.17.0"
+    }
+  }
+}
+
+provider "kubernetes" {
+  config_path = "~/.kube/config"
+  config_contex = "minikube"
+}
+
+resource "kubernetes_namespace" "test" {
+  metadata {
+    name = "gitea2"
+  }
+}
+
+resource "kubernetes_deployment" "test" {
+  metadata {
+    name      = "gitea2"
+    namespace = kubernetes_namespace.test.metadata.0.name
+  }
+  spec {
+    replicas = 1
+    selector {
+      match_labels = {
+        app = "gitea2"
+      }
+    }
+    template {
+      metadata {
+        labels = {
+          app = "gitea2"
+        }
+      }
+      spec {
+        container {
+          image = "anicnkakb/gitea2:latest"
+          name  = "gitea2"
+          port {
+            container_port = 3000
+          }
+        }
+      }
+    }
+  }
+}
+
+resource "kubernetes_service" "test" {
+  metadata {
+    name      = "gitea2"
+    namespace = kubernetes_namespace.test.metadata.0.name
+  }
+  spec {
+    selector = {
+      app = kubernetes_deployment.test.spec.0.template.0.metadata.0.labels.app
+    }
+    type = "NodePort"
+    port {
+      node_port   = 30301
+      port        = 3031
+      target_port = 3000
+    }
+  }
+}
